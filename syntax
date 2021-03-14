@@ -1,0 +1,15 @@
+main:
+    run test(rax, rbx)
+
+decl rcx test(arg1, arg2):
+    mov arg1, arg2
+    ret
+
+=>
+
+main:
+    call test
+
+test:
+    mov rax, rbx
+    ret
