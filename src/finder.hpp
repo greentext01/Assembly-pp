@@ -1,12 +1,17 @@
+#ifndef AF941B71_189B_4E39_8F1F_7B1CBC8EB064
+#define AF941B71_189B_4E39_8F1F_7B1CBC8EB064
+
 #include <string>
 #include <vector>
 
-class Finder {
+#include "reader.hpp"
+
+class Finder : public Reader {
    private:
-    std::string m_fileContents;
-    std::vector<std::string> m_fileWords;
+    std::vector<std::string> m_fileTokens;
 
    public:
-    Finder(std::string fileContents);
-    std::vector<int> findWords(std::string word);
+    std::vector<int> findTokens(std::string token);
 };
+
+#endif /* AF941B71_189B_4E39_8F1F_7B1CBC8EB064 */

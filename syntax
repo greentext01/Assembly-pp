@@ -1,15 +1,31 @@
 main:
     run test(rax, rbx)
+    run test(rbx, rax)
 
-decl rcx test(arg1, arg2):
+decl test(arg1, arg2):
     mov arg1, arg2
-    ret
+    return
 
 =>
 
 main:
+    push rax
+    push rbx
+    call test
+    
+    push rbx
+    push rax
     call test
 
 test:
-    mov rax, rbx
-    ret
+    pop rsi
+    pop rdi
+    mov rdi, rsi
+    ret 
+
+
+
+> find "decl"
+> read until "\n"
+> change contents of function
+> find "run" 

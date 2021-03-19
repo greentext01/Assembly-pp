@@ -1,22 +1,26 @@
 #include "finder.hpp"
-#include <string>
-#include <vector>
+
 #include <cstring>
 #include <sstream>
+#include <string>
+#include <vector>
 
-Finder::Finder(std::string fileContents) {
-    m_fileContents = fileContents;
-    std::stringstream ss;
-    std::string word;
-    ss.str(m_fileContents);
-    while(getline(ss, word, ' ')) {
-        m_fileWords.push_back(word);
-    }
-}
+std::vector<int> Finder::findTokens(std::string token) {
+    std::vector<int> output = {};
 
-std::vector<int> Finder::findWords(std::string word) {
-    std::vector<int> output;
-    for(std::string item : m_fileWords) {
-        if(item == word) output.push_back(item);
+    size_t foundToken;
+
+    /**
+     * @brief The position of the previously found token
+     */
+    size_t prevFoundToken = 0;
+
+    while ((foundToken = s_result.find(token, prevFoundToken)) !=
+           std::string::npos) {
+        output.push_back(foundToken);
+
+        // +1 because if ypu don't, it will keep finding the same token.
+        prevFoundToken = foundToken + 1;
     }
+    return output;
 }
